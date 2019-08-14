@@ -1,7 +1,7 @@
 @extends(('layouts/compact_menu'))
 {{-- Page title --}}
 @section('title')
-    BERANDA
+    INKUBATOR
     @parent
 @stop
 {{-- page level styles --}}
@@ -12,56 +12,26 @@
 @stop
 @section('content')
 
-    <header class="head">
+<header class="head">
         <div class="main-bar">
             <div class="row no-gutters">
                 <div class="col-6">
                     <h4 class="mt-3">
-                        <i class="fa fa-home"></i>
-                        Beranda
+                        <i class="fa fa-cube"></i>
+                        Inkubator
                     </h4>
                 </div>
             </div>
         </div>
     </header>
-    
-    <!-- Body -->
-    <div class="bd-example">
-  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{{asset('assets/img/gedung.jpg')}}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h1 style="color:white">WELCOME</h1>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="{{asset('assets/img/gedung.jpg')}}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="{{asset('assets/img/gedung.jpg')}}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-        </div>
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</div>
+    <div class="outer">
+        <div class="inner bg-container">
+        
 
+           
+        </div>
+    </div>
+    
 @stop
 @section('footer_scripts')
     <!--  plugin scripts -->
