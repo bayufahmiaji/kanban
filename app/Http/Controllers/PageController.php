@@ -27,7 +27,7 @@ class PageController extends Controller
     }
 
     public function kanban(){
-        return view('kanban');
+        return view('kanban/kanbanhome');
     }
 
     public function pengaturan(){

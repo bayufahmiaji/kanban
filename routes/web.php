@@ -19,6 +19,11 @@ Route::get('/tenant' , 'PageController@tenant');
 Route::get('/inkubator' , 'PageController@inkubator');
 Route::get('/hilirisasi' , 'PageController@hilirisasi');
 Route::get('/layanan' , 'PageController@layanan');
+
+//kanban
 Route::get('/kanban' , 'PageController@kanban');
+Route::get('/project' , 'Controllerkanbanproject@project');
+Route::get('/team' , 'Controllerkanbanproject@team');
+//end kanban
 Route::get('/pengaturan' , 'PageController@pengaturan');
 
