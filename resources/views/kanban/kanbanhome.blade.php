@@ -10,6 +10,11 @@
     <link type="text/css" rel="stylesheet" href="{{asset('assets/vendors/circliful/css/jquery.circliful.css')}}">
     <link type="text/css" rel="stylesheet" href="{{asset('assets/css/pages/index.css')}}">
 @stop
+
+@section('account')
+    Bayu Fahmiaji
+    @stop
+    
 @section('content')
 <header class="head">
         <div class="main-bar">
@@ -27,37 +32,6 @@
     <div class="bg-container">
     <div>
     
-    <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#project">
-        <span class="btn-label">
-            <i class="fa fa-plus"></i>
-        </span>
-        New Project
-    </button>
-    </div>
-    
-    <div class="modal fade" id="project" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="" method="POST" class="form-horizontal" id="otp_validation">
-                            <table >
-                                <tr>
-                                    <td style="padding: 10px"><label for="project-name">Masukan Nama Project</label></td>
-                                    <td><input style="width: 250px" " class="form-control" type="text" name="project-name" placeholder="Masukan Nama"></td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 10px"></td>
-                                    <td style="text-align: right"><input type="submit" value="Save" class="btn btn-labeled btn-success"></td>
-                                </tr>
-                            </table>
-                        </form>
-                        </div>
-                </div>
-            </div>
-        </div>
     
 @stop
 @section('footer_scripts')

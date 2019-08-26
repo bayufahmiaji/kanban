@@ -22,8 +22,25 @@ Route::get('/layanan' , 'PageController@layanan');
 
 //kanban
 Route::get('/kanban' , 'PageController@kanban');
-Route::get('/project' , 'Controllerkanbanproject@project');
-Route::get('/team' , 'Controllerkanbanproject@team');
+Route::get('/loginkanban' , 'KanbanController@login');
+Route::get('/kanbanregister' , 'KanbanController@register');
+Route::post('/postlogin' , 'AuthController@postlogin');
+Route::post('/postuser','AuthController@create');
+Route::get('/project' , 'ProjectsController@index');
+Route::get('/project/{project}' , 'ProjectsController@show');
+Route::get('/team' ,         'KanbanController@team');
+Route::get('/kanban/login' , 'ProjectsController@index');
+Route::post('/projects' ,'ProjectsController@store');
+
 //end kanban
+
 Route::get('/pengaturan' , 'PageController@pengaturan');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

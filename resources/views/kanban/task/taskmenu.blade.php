@@ -43,23 +43,14 @@ z-index: 999999">
         <!-- .navbar -->
         <nav class="navbar navbar-static-top">
             <div class="container-fluid m-0">
-                <a class="navbar-brand" href="/kanban">
-                    <h4><img src="{{asset('assets/img/btplogo.png')}}" class="admin_img" alt="logo">STP - KANBAN</h4>
+                <a class="navbar-brand" href="/project">
+                    <h4><img src="{{asset('assets/img/btplogo.png')}}" class="admin_img" alt="logo">
+                    Board Project 
+                    @section('subtitle')
+                    asu
+                    @show
+                    </h4>
                 </a>
-                <div class="menu mr-sm-auto">
-                    <span class="toggle-left" id="menu-toggle">
-                        <i class="fa fa-bars"></i>
-                    </span>
-                </div>
-                <div class="top_search_box d-none d-md-flex">
-                    <form class="header_input_search">
-                        <input type="text" placeholder="Search" name="search">
-                        <button type="submit">
-                            <span class="font-icon-search"></span>
-                        </button>
-                        <div class="overlay"></div>
-                    </form>
-                </div>
                 <div class="topnav dropdown-menu-right">
                     <div class="btn-group small_device_search" data-toggle="modal"
                          data-target="#search_modal">
@@ -96,40 +87,7 @@ z-index: 999999">
         <!-- /.head -->
     </div>
     <!-- /#top -->
-    <div class="wrapper">
-        <div id="left">
-            <div class="menu_scroll mt-3">
-                <ul id="menu">
-                <li {!! (Request::is('kanban')? 'class="active"':"") !!}>
-                        <a href="{{ URL('/kanban') }} ">
-                            <i class="fa fa-home"></i>
-                            <span class="link-title menu_hide">&nbsp;&nbsp;Home</span>
-                        </a>
-                        </li>
-                        <!-- Menu Tenant Service -->
-                        <li {!! (Request::is('project')? 'class="active"':"") !!}>
-                        <a href="{{ URL('/project') }} ">
-                            <i class="fa fa-building"></i>
-                            <span class="link-title menu_hide">&nbsp;&nbsp;My Project</span>
-                        </a>
-                        </li>
-
-                        <!-- Menu Inkubator Bisnis -->
-                        <li {!! (Request::is('team')? 'class="active"':"") !!}>
-                        <a href="{{ URL('/team') }} ">
-                            <i class="fa fa-cube"></i>
-                            <span class="link-title menu_hide">&nbsp;&nbsp;My Team</span>
-                        </a>
-                        </li>
-                        </ul>
-                        </li>
-                        </ul>
-                    </li>
-                </ul>
-                <!-- /#menu -->
-            </div>
-        </div>
-        <!-- /#left -->
+    
 
         <div id="content" class="bg-container">
             <!-- Content -->

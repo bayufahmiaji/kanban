@@ -1,7 +1,7 @@
-@extends(('kanban/kanbanmenu'))
+@extends(('kanban/task/taskmenu'))
 {{-- Page title --}}
 @section('title')
-    Kanban My Team
+    Kanban Dashboard
     @parent
 @stop
 {{-- page level styles --}}
@@ -10,19 +10,21 @@
     <link type="text/css" rel="stylesheet" href="{{asset('assets/vendors/circliful/css/jquery.circliful.css')}}">
     <link type="text/css" rel="stylesheet" href="{{asset('assets/css/pages/index.css')}}">
 @stop
-
-@section('content')
+@section('subtitle')
+    {{$project->nama}}
+    @stop
 @section('account')
     Bayu Fahmiaji
     @stop
     
+@section('content')
 <header class="head">
         <div class="main-bar">
             <div class="row no-gutters">
                 <div class="col-6">
                     <h4 class="mt-3">
                         <i class="fa fa-cube"></i>
-                        My Team
+                        Board
                     </h4>
                 </div>
             </div>
@@ -30,8 +32,50 @@
     </header>
     <div class="outer">
     <div class="bg-container">
-    <div>
     
+
+    <table>
+         <td>
+         <div>
+            <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#project">
+                <span class="btn-label">
+                    <i class="fa fa-plus"></i>
+                </span>
+                New List
+            </button>
+            </div>
+         </td>
+    </table>
+    
+    
+    <div class="modal fade" id="project" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/postlist" method="POST" class="form-horizontal" id="otp_validation">
+                            {{ csrf_field()}}
+                            <table >
+                                <tr>
+                                    <input type="hidden" value="{{$project->id}}" name ="id_project">
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px"><label for="nama">Masukan Nama List</label></td>
+                                    <td><input style="width: 300px"  class="form-control" type="text" name="nama" placeholder="Masukan Nama"></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px"></td>
+                                    <td style="text-align: right"><input type="submit" value="Save" class="btn btn-labeled btn-success"></td>
+                                </tr>
+                            </table>
+                        </form>
+                        </div>
+                </div>
+            </div>
+        </div>
+
     
     
 @stop

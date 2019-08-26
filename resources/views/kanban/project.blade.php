@@ -10,6 +10,10 @@
     <link type="text/css" rel="stylesheet" href="{{asset('assets/vendors/circliful/css/jquery.circliful.css')}}">
     <link type="text/css" rel="stylesheet" href="{{asset('assets/css/pages/index.css')}}">
 @stop
+@section('account')
+    Bayu Fahmiaji
+    @stop
+
 @section('content')
 <header class="head">
         <div class="main-bar">
@@ -39,14 +43,18 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="POST" class="form-horizontal" id="otp_validation">
+                        <form action="/projects" method="POST" class="form-horizontal" id="otp_validation">
+                            {{ csrf_field()}}
                             <table >
                                 <tr>
-                                    <td style="padding: 10px"><label for="project-name">Masukan Nama Project</label></td>
-                                    <td><input style="width: 250px" " class="form-control" type="text" name="project-name" placeholder="Masukan Nama"></td>
+                               
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px"><label for="nama">Masukan Nama Project</label></td>
+                                    <td><input style="width: 300px"  class="form-control" type="text" name="nama" placeholder="Masukan Nama"></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 10px"></td>
@@ -58,7 +66,22 @@
                 </div>
             </div>
         </div>
+
+        <div class="row no-gutters">
+                <div class="col-10">
+                <ul class = "list-group">
+
+                @foreach($project as $project)
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{$project->nama}}
+                <a href="/project/{{$project->id}}" tyle="text-align: right" class="badge badge-primary badge-pill">detail</a>
+                </li>
+                @endforeach
+                </ul>
+                </div>
+            </div>
     
+        
 @stop
 @section('footer_scripts')
     <!--  plugin scripts -->

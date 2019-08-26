@@ -70,7 +70,8 @@ z-index: 999999">
                         <div class="user-settings no-bg">
                             <button type="button" class="btn btn-default no-bg micheal_btn" data-toggle="dropdown">
                                 <img src="{{asset('assets/img/admin.jpg')}}" class="admin_img2 img-thumbnail rounded-circle avatar-img"
-                                     alt="avatar"> <strong>Micheal</strong>
+                                     alt="avatar"> 
+                                     <strong>GUEST</strong>
                                 <span class="fa fa-sort-down white_bg"></span>
                             </button>
                             <div class="dropdown-menu admire_admin">
@@ -152,8 +153,8 @@ z-index: 999999">
                         </li>
 
                         <!-- Kanban -->
-                        <li {!! (Request::is('kanban')? 'class="active"':"") !!}>
-                        <a href="{{ URL('/kanban') }} ">
+                        <li {!! (Request::is('/kanban')? 'class="active"':"") !!}>
+                        <a href="{{ URL('/loginkanban') }} ">
                         <i class="fa fa-book"></i>
                         <span class="link-title menu_hide">&nbsp;&nbsp;Kanban</span>
                         </a>
