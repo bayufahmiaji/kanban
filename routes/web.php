@@ -29,9 +29,10 @@ Route::post('/postuser','AuthController@create');
 Route::get('/project' , 'ProjectsController@index');
 Route::get('/project/{project}' , 'ProjectsController@show');
 Route::get('/team' ,         'KanbanController@team');
+Route::get('/coba' ,         'KanbanController@coba');
 Route::get('/kanban/login' , 'ProjectsController@index');
 Route::post('/projects' ,'ProjectsController@store');
-
+Route::post('/postlist' ,'ListsController@store');
 //end kanban
 
 Route::get('/pengaturan' , 'PageController@pengaturan');

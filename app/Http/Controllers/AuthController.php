@@ -12,7 +12,6 @@ class AuthController extends Controller
     public function postlogin(Request $request){
 
         if(Auth::attempt($request->only('email','password'))){
-
             return redirect('/kanban');
         }else{
             return redirect('/loginkanban')->with('GAGAL','Password atau Username Salah');

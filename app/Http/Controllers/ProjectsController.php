@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
-use App\User;
+use App\tb_list;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -51,8 +51,9 @@ class ProjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Project $project)
-    {
-        return view('kanban.task.task',compact('project'));
+    {   
+        $list = tb_list::all();
+        return view('kanban.task.task',compact('project','list'));
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\List;
+use App\tb_list;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -36,8 +36,10 @@ class ListsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        tb_list::create($request->all());
+
+        return back();
+    } 
 
     /**
      * Display the specified resource.
@@ -45,7 +47,7 @@ class ListsController extends Controller
      * @param  \App\List  $list
      * @return \Illuminate\Http\Response
      */
-    public function show(List $list)
+    public function show(tb_list $list)
     {
         //
     }
@@ -56,7 +58,7 @@ class ListsController extends Controller
      * @param  \App\List  $list
      * @return \Illuminate\Http\Response
      */
-    public function edit(List $list)
+    public function edit(tb_list $list)
     {
         //
     }
@@ -65,10 +67,10 @@ class ListsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\List  $list
+     * @param  \App\tb_list  $list
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, List $list)
+    public function update(Request $request, tb_list $list)
     {
         //
     }
@@ -76,10 +78,10 @@ class ListsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\List  $list
+     * @param  \App\tb_list  $list
      * @return \Illuminate\Http\Response
      */
-    public function destroy(List $list)
+    public function destroy(tb_list $list)
     {
         //
     }

@@ -20,8 +20,7 @@ class KanbanController extends Controller
 
     public function home(){
         if(Auth::check()){
-            $user = User::all();
-            return view ('kanban/kanbanhome',compact('user'));
+            return view ('kanban/kanbanhome');
         }
     }
     public function login(){
@@ -29,6 +28,9 @@ class KanbanController extends Controller
     }
     public function register(){
         return view('kanban/kbregister');
+    }
+    public function coba(){
+        return view('kanban/task/coba');
     }
 
     
