@@ -46,16 +46,7 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
-        'userkanban' => [
-            'driver' => 'session',
-            'provider' => 'userkanban',
-        ],
-
-        'apiuserkanban' => [
-            'driver' => 'token',
-            'provider' => 'userkanban',
-            'hash' => false,
-        ],
+        
     ],
 
     /*
@@ -80,11 +71,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-        'userkanban' => [
-            'driver' => 'eloquent',
-            'model' => App\UserKanban::class,
-        ],
-
+        
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

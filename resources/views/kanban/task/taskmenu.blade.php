@@ -55,7 +55,7 @@
                                 <img src="{{asset('assets/img/admin.jpg')}}" class="admin_img2 img-thumbnail rounded-circle avatar-img"
                                      alt="avatar"> <strong>
                                      @section('account')
-                                        GUEST
+                                        {{auth()->user()->name}}
                                         @show
                                         </strong>
                                 <span class="fa fa-sort-down white_bg"></span>
@@ -63,8 +63,6 @@
                             <div class="dropdown-menu admire_admin">
                                 <a class="dropdown-item title" href="#">
                                     Setting Account</a>
-                                <a class="dropdown-item" href="edit_user"><i class="fa fa-cogs"></i>
-                                    Account Settings</a>
                                 <a class="dropdown-item" href="/"><i class="fa fa-sign-out"></i>
                                     Log Out</a>
                             </div>

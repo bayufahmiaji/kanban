@@ -1,19 +1,17 @@
-@extends(('kanban/task/taskmenu'))
-
+@extends(('kanban.task.taskmenu'))
 {{-- Page title --}}
 @section('title')
-    Board
+    Project {{$project->name}}
     @parent
 @stop
 {{-- page level styles --}}
 @section('header_styles')
-    <link type="text/css" rel="stylesheet" href="{{asset('assets/vendors/chartist/css/chartist.min.css')}}" />
-    <link type="text/css" rel="stylesheet" href="{{asset('assets/vendors/circliful/css/jquery.circliful.css')}}">
-    <link type="text/css" rel="stylesheet" href="{{asset('assets/css/pages/index.css')}}">
+    <!--Page level styles-->
     <link type="text/css" rel="stylesheet" href="{{asset('assets/css/pages/sortable.css')}}" />
-   
-   
-<style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- end of page level styles -->
+  
+    <style>
 .task-board {
     background: #2c7cbc;
     display: inline-block;
@@ -86,21 +84,14 @@ ul {
 }
 </style>
 @stop
-@section('subtitle')
-    {{$project->nama}}
-    @stop
-@section('account')
-    Bayu Fahmiaji
-    @stop
-    
 @section('content')
-<header class="head">
+    <header class="head">
         <div class="main-bar">
             <div class="row no-gutters">
-                <div class="col-6">
-                    <h4 class="mt-3">
-                        <i class="fa fa-cube"></i>
-                        Board
+                <div class="col-lg-6 col-sm-4 col-12">
+                    <h4 class="nav_top_align">
+                        <i class="fa fa-anchor"></i>
+                        Your Project
                     </h4>
                 </div>
             </div>
@@ -213,7 +204,7 @@ ul {
         </div>
         @endif
         @endforeach
-           
+
         <br>
         <br>
         <br>
@@ -226,50 +217,55 @@ ul {
         <br>
         <br>
         <br>
-            
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 @stop
 @section('footer_scripts')
-    <!--  plugin scripts -->
+    <!--Plugin scripts-->
+    <!-- <script type="text/javascript" src="{{asset('assets/vendors/sortable/js/Sortable.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/vendors/slimscroll/js/jquery.slimscroll.min.js')}}"></script> -->
+    <!--End of Plugin scripts-->
+    <!--Page level scripts-->
+    <!-- <script type="text/javascript" src="{{asset('assets/js/pages/sortable.js')}}"></script> -->
     <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-    <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-    
-    <!-- <script type="text/javascript" src="{{asset('assets/vendors/countUp.js/js/countUp.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/vendors/flip/js/jquery.flip.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/pluginjs/jquery.sparkline.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/vendors/chartist/js/chartist.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/pluginjs/chartist-tooltip.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/vendors/swiper/js/swiper.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/vendors/circliful/js/jquery.circliful.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/vendors/flotchart/js/jquery.flot.js')}}" ></script>
-    <script type="text/javascript" src="{{asset('assets/vendors/flotchart/js/jquery.flot.resize.js')}}"></script> -->
-    <script>           
-        $((document).ready(function() {
-            $('ul[id^="sort"]').sortable({
-                connectWith: ".sortable",
-                receive: function (e, ui) {
-                    var id_lists = $(ui.item).parent(".sortable").data("status-id");
-                    var id_task = $(ui.item).data("task-id");
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-                    $.ajax({
-                        type: "post",
-                        url: '/task/'+id_lists+'/'+id_task,
-                        data:{
-                            id_list : id_lists,
-                            id : id_task
-                        },
-                        success: function(data){
-                            alert(data);
-                            }
-                    });
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+ $( function() {
+     $('ul[id^="sort"]').sortable({
+         connectWith: ".sortable",
+         receive: function (e, ui) {
+                var id_list = $(ui.item).parent(".sortable").data("status-id");
+                var id_task = $(ui.item).data("task-id");
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
-            
-            }).disableSelection();
-            } );
-    </script>
-   
-    <!--end of plugin scripts-->
+                });
+                $.ajax({
+                    type: 'POST',
+                    url: '/task/'+id_list+'/'+id_task,
+                    data:{
+                        id_list : id_list,
+                        id_task : id_task
+                    },
+                    success: function(data){
+                        alert(data);
+                        }
+                });
+             }
+     
+     }).disableSelection();
+     } );
+  </script>
+    <!-- end of Page level scripts-->
 @stop

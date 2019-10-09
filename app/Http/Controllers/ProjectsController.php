@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\tb_list;
+use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,7 +18,7 @@ class ProjectsController extends Controller
     public function index()
     {
         $project = Project::all();
-        return view('kanban.project',compact('project'));
+        return view('kanban.project.project',compact('project'));
     }
 
     /**
@@ -27,7 +28,7 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -53,7 +54,12 @@ class ProjectsController extends Controller
     public function show(Project $project)
     {   
         $list = tb_list::all();
-        return view('kanban.task.task',compact('project','list'));
+        $result = Task::all();
+        return view('kanban.task.create',compact('project','list','result'));
+    }
+    public function show2(Project $project)
+    {   
+        return view('kanban.project.edit',compact('project'));
     }
 
     /**
@@ -62,9 +68,11 @@ class ProjectsController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit(Request $request,$id)
     {
-        //
+        $project = Project::find($id);
+        $project->update($request->all());
+        return redirect('/project');
     }
 
     /**
@@ -85,8 +93,10 @@ class ProjectsController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy($id)
     {
-        //
-    }
+        $project = Project::find($id);
+        $project->delete($project);
+        return redirect('/project');
+    }   
 }

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use illuminate\Support\Facades\DB;
 use App\User;
+use App\Team;
+use App\Member;
 use Auth;
 
 class KanbanController extends Controller
@@ -15,13 +17,15 @@ class KanbanController extends Controller
     }
 
     public function team(){
-        return view('kanban/team');
+        $team = Team::all();
+        $member = Member::all();
+        return view('kanban/team/team',compact('team','member'));
     }
 
     public function home(){
-        if(Auth::check()){
-            return view ('kanban/kanbanhome');
-        }
+        
+        return view ('kanban/kanbanhome')->with->alert('Selamat Datang!');
+        
     }
     public function login(){
         return view('kanban/kanbanlogin');

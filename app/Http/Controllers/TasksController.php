@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\tb_list;
-use App\Task;
 use Illuminate\Http\Request;
+use App\Task;
 use App\Http\Controllers\Controller;
 
-class ListsController extends Controller
+class TasksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,71 +36,51 @@ class ListsController extends Controller
      */
     public function store(Request $request)
     {
-        
-
-        tb_list::create($request->all());
-
-        return back();
-    } 
-    public function storetask(Request $request)
-    {
-
-        $request->validate([
-            'nama' => 'required'
-        ]);
-
-        Task::create($request->all());
-        return back();
-    } 
+        //
+    }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\List  $list
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(tb_list $list)
+    public function show($id)
     {
-        return view ('kanban.task.create',compact('list'));
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\List  $list
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(tb_list $list)
+    public function edit($id)
     {
-        
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\tb_list  $list
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tb_list $list)
+    public function update(Request $request, $id)
     {
-        
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\tb_list  $list
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tb_list $list)
+    public function destroy($id)
     {
         //
-    }
-    public function task(Request $request,$id_list,$id){
-    // $id = Task::find();
-    // $id_list = Task::find();
-        return $request;
     }
 }

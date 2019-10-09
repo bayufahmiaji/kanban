@@ -38,7 +38,7 @@ z-index: 999999">
             <div class="row">
                 <div class=" col-lg-4 col-md-8 col-sm-12  mx-auto login2_border login_section_top">
                     <div class="login_logo login_border_radius1">
-                        <h3 class="text-center text-white">
+                        <h3 class="text-center text-black">
                             <img src="{{asset('assets/img/btplogo.png')}}" alt="logo" class="admire_logo"><br />
                             <span class="m-t-15">LOG IN</span>
                         </h3>
@@ -47,26 +47,26 @@ z-index: 999999">
                         <form action="/postlogin" id="login_validator" method="POST">
                             {{ csrf_field()}}
                             <div class="form-group">
-                                <label for="email" class="col-form-label text-white"> E-mail</label>
+                                <label for="email" class="col-form-label text-black"> E-mail</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control b_r_20" id="email" name="email" placeholder="E-mail">
                                     <span class="input-group-text bl-0">
-                                        <i class="fa fa-envelope text-white"></i>
+                                        <i class="fa fa-envelope text-black"></i>
                                     </span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="col-form-label text-white">Password</label>
+                                <label for="password" class="col-form-label text-black">Password</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control b_r_20" id="password" name="password" placeholder="Password">
                                     <span class="input-group-text bl-0">
-                                        <i class="fa fa-key text-white"></i>
+                                        <i class="fa fa-key text-black"></i>
                                     </span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6 m-t-10">
-                                    <a href="/kanbanregister" class="forgottxt_clr text-white"><i class="fa fa-external-link"></i> Register Now</a>
+                                    <a href="/kanbanregister" class="forgottxt_clr text-black"><i class="fa fa-external-link"></i> Register Now</a>
                                 </div>
                             </div>
                             <div class="row">

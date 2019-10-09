@@ -10,9 +10,7 @@
     <link type="text/css" rel="stylesheet" href="{{asset('assets/vendors/circliful/css/jquery.circliful.css')}}">
     <link type="text/css" rel="stylesheet" href="{{asset('assets/css/pages/index.css')}}">
 @stop
-@section('account')
-    Bayu Fahmiaji
-    @stop
+
 
 @section('content')
 <header class="head">
@@ -21,7 +19,7 @@
                 <div class="col-6">
                     <h4 class="mt-3">
                         <i class="fa fa-cube"></i>
-                        My Project
+                        Your Project
                     </h4>
                 </div>
             </div>
@@ -67,21 +65,37 @@
             </div>
         </div>
 
-        <div class="row no-gutters">
-                <div class="col-10">
-                <ul class = "list-group">
-
-                @foreach($project as $project)
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{$project->nama}}
-                <a href="/project/{{$project->id}}" tyle="text-align: right" class="badge badge-primary badge-pill">detail</a>
-                </li>
-                @endforeach
-                </ul>
+        <table class="table table-hover">
+            <tr>
+                <th >Nama Project</th>
+                <th>Action</th>
+            </tr>
+            @foreach($project as $project)
+            <tr>
+                <td>{{$project->nama}}</td>
+                <td>
+                    <a href="/project/{{$project->id}}" class ="btn btn-success btn-sm">Details</a>
+                    <a href="/project/{{$project->id}}/edit" class ="btn btn-warning btn-sm">Edit</a>
+                    <a href="/project/{{$project->id}}/delete" class ="btn btn-danger btn-sm" onclick="return confirm('Delete Project?')">Delete</a>
+                </td>
+            </tr>
+            @endforeach
+        </table>
+    
+    <header class="head">
+        <div class="main-bar">
+            <div class="row no-gutters">
+                <div class="col-6">
+                    <h4 class="mt-3"> 
+                        <i class="fa fa-cube"></i>
+                        Team Project
+                    </h4>
                 </div>
             </div>
-    
-        
+        </div>
+    </header>
+       
+
 @stop
 @section('footer_scripts')
     <!--  plugin scripts -->

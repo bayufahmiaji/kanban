@@ -13,7 +13,7 @@
     <!--End of Plugin styles-->
     <link type="text/css" rel="stylesheet" href="{{asset('assets/css/pages/login3.css')}}"/>
 </head>
-<body class="login_backimg">
+<body>
 <div class="preloader" style=" position: fixed;
   width: 100%;
   height: 100%;
@@ -38,7 +38,7 @@ z-index: 999999">
             <div class="row">
                 <div class=" col-lg-4 col-md-8 col-sm-12  mx-auto login2_border login_section_top">
                     <div class="login_logo login_border_radius1">
-                        <h3 class="text-center text-white">
+                        <h3 class="text-center text-black">
                             <img src="{{asset('assets/img/btplogo.png')}}" alt="logo" class="admire_logo"><br />
                             <span class="m-t-15">Register</span>
                         </h3>
@@ -46,30 +46,37 @@ z-index: 999999">
                     <div class="m-t-15">
                     <form class="form-horizontal" id="register_valid" action="/postuser" method="POST">
                             {{ csrf_field()}}
+                            
+                            <tr>
+                                    <input type="hidden" value=" " name ="phone">
+                            </tr>
+                            <tr>
+                                    <input type="hidden" value=" " name ="address">
+                            </tr>
                             <div class="form-group">
-                                <label for="email" class="col-form-label text-white">Input Email </label>
+                                <label for="email" class="col-form-label text-black">Input Email </label>
                                 <div class="input-group">
                                     <input type="text" placeholder="Email Address" name="email" id="email" class="form-control b_r_20">
                                     <span class="input-group-text  bl-0">
-                                        <i class="fa fa-envelope text-white"></i>
+                                        <i class="fa fa-envelope text-black"></i>
                                     </span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="name" class="col-form-label text-white">Input Nama</label>
+                                <label for="name" class="col-form-label text-black">Input Nama</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control b_r_20" name="name" id="name" placeholder="Username">
                                     <span class="input-group-text bl-0">
-                                        <i class="fa fa-user text-white"></i>
+                                        <i class="fa fa-user text-black"></i>
                                     </span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="col-form-label text-white">Input Password</label>
+                                <label for="password" class="col-form-label text-black">Input Password</label>
                                 <div class="input-group">
                                     <input type="password" placeholder="Password" id="password" name="password" class="form-control b_r_20">
                                     <span class="input-group-text  bl-0">
-                                        <i class="fa fa-key text-white"></i>
+                                        <i class="fa fa-key text-black"></i>
                                     </span>
                                 </div>
                             </div>
@@ -83,7 +90,7 @@ z-index: 999999">
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <label class="col-form-label text-white">Already have an account?</label>
+                                    <label class="col-form-label text-black">Already have an account?</label>
                                     <a href="/loginkanban" class="text-primary login_hover"><b>Log In</b></a>
                                 </div>
                             </div>

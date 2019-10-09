@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\tb_list;
-use App\Task;
+use App\Team;
+use App\Member;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ListsController extends Controller
+class TeamController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Team $team)
     {
-        //
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -28,7 +28,7 @@ class ListsController extends Controller
     {
         //
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -37,71 +37,55 @@ class ListsController extends Controller
      */
     public function store(Request $request)
     {
-        
-
-        tb_list::create($request->all());
-
-        return back();
-    } 
-    public function storetask(Request $request)
-    {
-
-        $request->validate([
-            'nama' => 'required'
-        ]);
-
-        Task::create($request->all());
-        return back();
-    } 
-
+        Team::create($request->all());
+        return redirect('/team');
+    }
+    
     /**
      * Display the specified resource.
      *
-     * @param  \App\List  $list
+     * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function show(tb_list $list)
+    public function show(Team $team)
     {
-        return view ('kanban.task.create',compact('list'));
+        $user = User::all();
+        $member = Member::all();
+        return view('kanban.team.index',compact('user','member','team'));
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\List  $list
+     * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function edit(tb_list $list)
+    public function edit(Team $team)
     {
-        
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\tb_list  $list
+     * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tb_list $list)
+    public function update(Request $request, Team $team)
     {
-        
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\tb_list  $list
+     * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tb_list $list)
+    public function destroy(Team $team)
     {
         //
-    }
-    public function task(Request $request,$id_list,$id){
-    // $id = Task::find();
-    // $id_list = Task::find();
-        return $request;
     }
 }

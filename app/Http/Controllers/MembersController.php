@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\tb_list;
-use App\Task;
+use App\Member;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ListsController extends Controller
+class MembersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,71 +36,52 @@ class ListsController extends Controller
      */
     public function store(Request $request)
     {
-        
-
-        tb_list::create($request->all());
-
+        Member::create($request->all());
         return back();
-    } 
-    public function storetask(Request $request)
-    {
-
-        $request->validate([
-            'nama' => 'required'
-        ]);
-
-        Task::create($request->all());
-        return back();
-    } 
+    }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\List  $list
+     * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function show(tb_list $list)
+    public function show(Member $member)
     {
-        return view ('kanban.task.create',compact('list'));
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\List  $list
+     * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function edit(tb_list $list)
+    public function edit(Member $member)
     {
-        
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\tb_list  $list
+     * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tb_list $list)
+    public function update(Request $request, Member $member)
     {
-        
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\tb_list  $list
+     * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tb_list $list)
+    public function destroy(Member $member)
     {
         //
-    }
-    public function task(Request $request,$id_list,$id){
-    // $id = Task::find();
-    // $id_list = Task::find();
-        return $request;
     }
 }

@@ -13,7 +13,6 @@
 
 use Illuminate\Routing\Router;
 
-Route::get('/' , 'PageController@home');
 Route::get('/index1' , 'PageController@home');
 Route::get('/tenant' , 'PageController@tenant');
 Route::get('/inkubator' , 'PageController@inkubator');
@@ -21,27 +20,57 @@ Route::get('/hilirisasi' , 'PageController@hilirisasi');
 Route::get('/layanan' , 'PageController@layanan');
 
 //kanban
-Route::get('/kanban' , 'PageController@kanban');
-Route::get('/loginkanban' , 'KanbanController@login');
+Route::group(['domain'=>'kanban.com'],function(){
+Route::get('/logout' , 'AuthController@logout');
 Route::get('/kanbanregister' , 'KanbanController@register');
 Route::post('/postlogin' , 'AuthController@postlogin');
 Route::post('/postuser','AuthController@create');
-Route::get('/project' , 'ProjectsController@index');
-Route::get('/project/{project}' , 'ProjectsController@show');
-Route::get('/team' ,         'KanbanController@team');
-Route::get('/coba' ,         'KanbanController@coba');
-Route::get('/kanban/login' , 'ProjectsController@index');
-Route::post('/projects' ,'ProjectsController@store');
-Route::post('/postlist' ,'ListsController@store');
+Route::get('/login' , 'KanbanController@login')->name('login');
+
+Route::group(['middleware' => 'auth'],function(){
+    Route::get('/' , 'PageController@kanban');
+    
+    //user
+    Route::get('/edit_user' , 'AuthController@edit');
+    Route::post('/update_user' , 'AuthController@update');
+
+    //home
+    Route::get('/kanban' , 'PageController@kanban');
+
+    //project
+    Route::get('/project' , 'ProjectsController@index');
+    Route::get('/project/{project}' , 'ProjectsController@show');
+    Route::get('/project/{project}/edit' , 'ProjectsController@show2');
+    Route::post('/projects' ,'ProjectsController@store');
+    
+        //delete
+        Route::get('/project/{project}/delete' , 'ProjectsController@destroy');
+        //update
+        Route::post('/project/{project}/edit' , 'ProjectsController@edit');
+    
+    //team
+    Route::get('/team' , 'KanbanController@team');
+    Route::get('/team/{team}' , 'TeamController@show');
+    Route::post('/postteam' , 'TeamController@store');
+
+    //list
+    Route::post('/postlist' ,'ListsController@store');
+    Route::post('/posttask' ,'ListsController@storetask');
+    
+    //task
+    Route::post('/task/{id_list}/{id_task}' , 'ListsController@task');
+    Route::get('/list/{list}' , 'ListsController@show');
+    
+    
+    //member
+    Route::post('/postmember' , 'MembersController@store');
+    
+});
+});
+
 //end kanban
 
 Route::get('/pengaturan' , 'PageController@pengaturan');
-
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
