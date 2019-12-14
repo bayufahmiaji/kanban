@@ -177,7 +177,7 @@ ul {
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     <div class="modal-body">
-                                        <form action="/posttask" method="POST" class="form-horizontal" id="otp_validation">
+                                        <form action="/posttask/{$task_row->id_list}" method="POST" class="form-horizontal" id="otp_validation">
                                             {{ csrf_field()}}
                                             <table >
                                                 <tr>
@@ -242,34 +242,7 @@ ul {
     <script type="text/javascript" src="{{asset('assets/vendors/circliful/js/jquery.circliful.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/vendors/flotchart/js/jquery.flot.js')}}" ></script>
     <script type="text/javascript" src="{{asset('assets/vendors/flotchart/js/jquery.flot.resize.js')}}"></script> -->
-    <script>           
-        $((document).ready(function() {
-            $('ul[id^="sort"]').sortable({
-                connectWith: ".sortable",
-                receive: function (e, ui) {
-                    var id_lists = $(ui.item).parent(".sortable").data("status-id");
-                    var id_task = $(ui.item).data("task-id");
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-                    $.ajax({
-                        type: "post",
-                        url: '/task/'+id_lists+'/'+id_task,
-                        data:{
-                            id_list : id_lists,
-                            id : id_task
-                        },
-                        success: function(data){
-                            alert(data);
-                            }
-                    });
-                    }
-            
-            }).disableSelection();
-            } );
-    </script>
+    
    
     <!--end of plugin scripts-->
 @stop

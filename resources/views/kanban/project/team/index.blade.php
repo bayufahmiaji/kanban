@@ -1,7 +1,7 @@
 @extends(('kanban.task.taskmenu'))
 {{-- Page title --}}
 @section('title')
-    Project {{$project->name}}
+    Project {{$projectteam->nama}}
     @parent
 @stop
 {{-- page level styles --}}
@@ -84,6 +84,13 @@ ul {
 }
 </style>
 @stop
+@section('subtitle')
+    <a class="navbar-brand" href="/team/{{$teams->id}}/">
+                    <h4><img src="{{asset('assets/img/btplogo.png')}}" class="admin_img" alt="logo">
+                    {{$projectteam->nama}}
+                    </h4>
+                </a>
+    @stop
 @section('content')
     <header class="head">
         <div class="main-bar">
@@ -99,8 +106,6 @@ ul {
     </header>
     <div class="outer">
     <div class="bg-container">
-    
-
          
             <div>
             <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#list">
@@ -111,25 +116,30 @@ ul {
             </button>
             </div>
          
-            
-        
-    
-    
     <div class="modal fade" id="list" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="modal-body">
-                        <form action="/postlist" method="POST" class="form-horizontal" id="otp_validation">
+                        <form action="/postlist/team" method="POST" class="form-horizontal" id="otp_validation">
                             {{ csrf_field()}}
                             <table >
                                 <tr>
-                                    <input type="hidden" value="{{$project->id}}" name ="id_project">
+                                    <input type="hidden" value="{{$projectteam->id}}" name ="id_project">
                                 </tr>
                                 <tr>
-                                    <td style="padding: 10px"><label for="nama">Masukan Nama List</label></td>
-                                    <td><input style="width: 300px"  class="form-control" type="text" name="nama" placeholder="Masukan Nama"></td>
+                                   <div class="form-group">
+                                    <label for="exampleFormControlSelect1">List</label>
+                                    <select class="form-control" name="nama" id="exampleFormControlSelect1">
+                                      <option>-</option>
+                                      <option>To Do</option>
+                                      <option>Doing</option>
+                                      <option>Done</option>
+                                      <option>Resource</option>
+                                      <option>On Hold</option>
+                                    </select>
+                                  </div>
                                 </tr>
                                 <tr>
                                     <td style="padding: 10px"></td>
@@ -145,19 +155,21 @@ ul {
     
        
     
-        @foreach($list as $list) 
-        @if($list->id_project === $project->id)
+        @foreach($lists as $lists) 
+        @if($lists->id_project === $projectteam->id)
         <div class="status-card">
             <div class="card-header">
-            <span class="card-header-text">{{$list->nama}}</span>
+            <span class="card-header-text">{{$lists->nama}}</span>
             </div>
             <ul class="sortable ui-sortable"
-                id="sort{{$list->id}}"
-                data-status-id="{{$list->id}}">
+                id="sort{{$lists->id}}"
+                data-status-id="{{$lists->id}}">
                     @foreach ($result as $taskrow)
-                    @if($taskrow->id_list === $list->id) 
+                    @if($taskrow->id_list === $lists->id) 
                     <li class="text-row ui-sortable-handle"
-                        data-task-id="{{$taskrow->id_list}}">{{$taskrow->nama}}</li>
+                        data-task-id="{{$taskrow->id_list}}">
+                        <a href="/taskteam/{{$taskrow->id}}/{{$teams->id}}/{{$projectteam->id}}/{{$projectteam->id}}/edit">{{$taskrow->nama}}</a>   
+                    </li>
                     @endif
                     @endforeach
                 
@@ -168,11 +180,12 @@ ul {
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     <div class="modal-body">
-                                        <form action="/posttask/{$list->id}" method="POST" class="form-horizontal" id="otp_validation">
+                                        <form action="/posttask/team" method="POST" class="form-horizontal" id="otp_validation">
                                             {{ csrf_field()}}
                                             <table >
                                                 <tr>
-                                                    <input type="hidden" value="{{$list->id}}" name ="id_list">
+                                                    <input type="hidden" value="{{$lists->id}}" name ="id_list">
+                                                    <input type="hidden" value="{{$lists->nama}}" name ="status">
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 10px"><label for="nama">Masukan Nama Task</label></td>
@@ -205,38 +218,8 @@ ul {
         @endif
         @endforeach
 
-            <div class="modal fade" id="edit" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <div class="modal-body">
-                                        <form action="/posttask/{$list->id}" method="POST" class="form-horizontal" id="otp_validation">
-                                            {{ csrf_field()}}
-                                            <table >
-                                                <tr>
-                                                    <input type="hidden" value="{{$list->id}}" name ="id_list">
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding: 10px"><label for="nama">Masukan Nama Task</label></td>
-                                                    <td><input style="width: 300px"  class="form-control" type="text" name="nama" placeholder="Masukan Nama"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding: 10px"><label for="desksipsi">Masukan Deskripsi Task</label></td>
-                                                    <td><input style="width: 300px"  class="form-control" type="text" name="deskripsi" placeholder="Masukan Nama"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding: 10px"></td>
-                                                    <td style="text-align: right"><input type="submit" value="Save" class="btn btn-labeled btn-success"></td>
-                                                </tr>
-                                            </table>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>         
-                        </div>
-            <div>
+            
+            
         <br>
         <br>
         <br>

@@ -37,12 +37,15 @@
             <div class="container-fluid m-0">
                 <a class="navbar-brand" href="/team">
                     <h4><img src="{{asset('assets/img/btplogo.png')}}" class="admin_img" alt="logo">
-                    Your Team 
+                    Home
                     @section('subtitle')
                     
                     @show
                     </h4>
-                </a>
+                    </a>
+                    @section('navbar')
+                    
+                    @show
                 <div class="topnav dropdown-menu-right">
                     <div class="btn-group small_device_search" data-toggle="modal"
                          data-target="#search_modal">
@@ -61,7 +64,7 @@
                                 <span class="fa fa-sort-down white_bg"></span>
                             </button>
                             <div class="dropdown-menu admire_admin">
-                                <a class="dropdown-item title" href="/edituser">
+                                <a class="dropdown-item" href="/edituser">
                                     Setting Account</a>
                                 <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out"></i>
                                     Log Out</a>
@@ -104,6 +107,7 @@
         </div>
     </div>
     <!-- /#content -->
+
     @include('layouts/right_sidebar/default')
 
 </div>

@@ -82,9 +82,11 @@ class ProjectsController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request)
     {
-        //
+        $project = Project::find($request->project);
+        $project->update($request->all());
+        return back();
     }
 
     /**

@@ -18,6 +18,18 @@
     <link type="text/css" rel="stylesheet" href="{{asset('assets/css/pages/tables.css')}}" />
     <!--End of page level styles-->
 @stop
+@section('navbar')
+    <a class="navbar-brand" href="/team/{{$team->id}}">
+        <h4>
+            My Team
+        </h4>
+    </a>
+    <a class="navbar-brand" href="/team/{{$team->id}}/member">
+        <h4>
+            Members
+        </h4>
+    </a>
+@stop
 
 @section('content')
 
@@ -37,31 +49,22 @@
     <div>
     
 
-    <!-- Modal Untuk Post Team -->
-    <div class="modal fade" id="team" role="dialog">
+   
+    <!-- Modal Untuk Post ProjectTeam -->
+    <div class="modal fade" id="projectteam" role="dialog">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form action="/postmember" method="post" class="form" id="myform">
+                <form action="/postteamproject" method="post" class="form" id="myform">
                     {{ csrf_field()}}
-                        <input type="hidden" value="{{$team->id}}" name="id_team">
-                        <table>
-                        <tr>
-                            <th class="col-10">Email</th>
-                        </tr>
-                        @foreach($user as $user)
-                        <tr>
-                            
-                            <td>{{$user->email}}<td>
-                            <input type="hidden" value="{{$user->id}}" name="id_user">
-                            <input type="hidden" value="{{$user->name}}" name="name">
-                            <input type="submit" class="btn btn-primary" id="save" value="Add">
-                            
-                        </tr>
-                        @endforeach
-                        </table>
+                        <input type="hidden" value="{{$team->id}}" name="id_tim">
+                        <div class="form-group is-empty label-floating">
+                            <label class="control-label" for="list-name">Name : </label>
+                            <input type="text" class="form-control" id="nama" name="nama" required >
+                        </div>
                         <div class="modal-footer">
                             <button class="btn btn-warning" id="modal_close_btn" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" id="save" value="Save">
                         </div>
                     </form>
                 </div>
@@ -81,37 +84,81 @@
                         </div>
                         <div class="card-body p-t-10">
                             <div class=" m-t-25">
+                                
                                 <table class="table table-striped table-bordered table-hover " id="sample_6">
-                                <thead>
-                                <tr>
-                                    <th>Members Name</th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                                    <thead>
                                     <tr>
-                                        <td>{{$team->name_user}}</td>
+                                        <th>Members Name</th>
+                                        <th>Action</th>
                                     </tr>
-                                    @foreach($member as $member)
-                                    @if($member->id_team === $team->id)
-                                    <tr>
-                                        <td>{{$member->name}}</td>
-                                    </tr>
-                                    
-                                    @endif
-                                @endforeach
-                                </tbody>  </table>
-                            <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#team">
-                                <span class="btn-label">
-                                    <i class="fa fa-plus"></i>
-                                </span>
-                                Add Member
-                            </button>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($member as $member)
+                                        @if($member->id_team === $team->id)
+                                        <tr>
+                                            <td>{{$member->name}}</td>
+                                            <td>
+                                            <a href="/member/{{$member->id}}/{{$team->id}}/details" class ="btn btn-success btn-sm">Details</a>
+                                            <a href="/member/{{$member->id}}/delete" class ="btn btn-danger btn-sm" onclick="return confirm('Delete Project?')">Delete</a>
+                                        </td>
+                                        </tr>
+                                        
+                                        @endif
+                                    @endforeach
+                                    </tbody>  
+                                </table>
                             </div>
                             </div>
                         </div>
                     </div>
+                <div class="col-8 data_tables">
+                    <div class="card m-t-35">
+                        <div class="card-header bg-white">
+                            <i class="fa fa-table"></i>Team Project
+                        </div>
+                        <div class="card-body p-t-10">
+                            <div class=" m-t-25">
+                                <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#projectteam">
+                                    <span class="btn-label">
+                                        <i class="fa fa-plus"></i>
+                                    </span>
+                                    Create Project
+
+                                </button>
+                                <table class="table table-striped table-bordered table-hover " id="sample_6">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Project</th>
+                                            <th>Progress</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    
+                                    @foreach($project as $project)
+                                    @if($project->id_tim === $team->id)
+                                    <tr>
+                                        <td>{{$project->nama}}</td>
+                                        <td>0%</td>
+                                        <td>
+                                            <a href="/projects/{{$project->id}}/{{$team->id}}" class ="btn btn-success btn-sm">Details</a>
+                                            <a href="/projects/{{$project->id}}/edit" class ="btn btn-warning btn-sm">Edit</a>
+                                            <a href="/projects/{{$project->id}}/delete" class ="btn btn-danger btn-sm" onclick="return confirm('Delete Project?')">Delete</a>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+                                    </tbody> 
+                                    </table>
+                                
+                            </div>
+                            </div>
+
+                        </div>
+                    </div>
                    <!-- end--> 
                     
+                </div>
                 </div>
             </div>
         </div>
@@ -137,6 +184,22 @@
     <script type="text/javascript" src="{{asset('assets/vendors/datatables/js/buttons.print.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/vendors/datatables/js/dataTables.scroller.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/vendors/datatables/js/dataTables.responsive.js')}}"></script>
+    <script type="text/javascript">
+        $('#search').on('keyup',function(){
+        $value=$(this).val();
+        $.ajax({
+        type : 'get',
+        url : '{{URL::to('user/cari')}}',
+        data:{'search':$value},
+        success:function(data){
+        $('member').html(data);
+        }
+        });
+        })
+    </script>
+    <script type="text/javascript">
+        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+    </script>
      <!--end of plugin scripts-->
     
 @stop

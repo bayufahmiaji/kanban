@@ -43,16 +43,7 @@ class ListsController extends Controller
 
         return back();
     } 
-    public function storetask(Request $request)
-    {
-
-        $request->validate([
-            'nama' => 'required'
-        ]);
-
-        Task::create($request->all());
-        return back();
-    } 
+     
 
     /**
      * Display the specified resource.

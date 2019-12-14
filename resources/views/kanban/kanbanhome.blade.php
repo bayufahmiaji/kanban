@@ -11,6 +11,7 @@
     <link type="text/css" rel="stylesheet" href="{{asset('assets/css/pages/index.css')}}">
     <link type="text/css" rel="stylesheet" href="{{asset('assets/vendors/fullcalendar/css/fullcalendar.min.css')}}" />
     <link type="text/css" rel="stylesheet" href="{{asset('assets/css/pages/calendar_custom.css')}}"/>
+    
 @stop
 
 
@@ -34,16 +35,16 @@
 
             <!--top section widgets-->
             <div class="row widget_countup">
-                <div class="col-12 col-sm-6 col-xl-3">
 
-                    <div id="top_widget1">
+                <div class="col-12 col-sm-6 col-xl-3">
+                <div id="top_widget2">
                         <div class="front">
                             <div class="bg-primary p-d-15 b_r_5">
                                 <div class="float-right m-t-5">
-                                    <i class="fa fa-users"></i>
+                                    <i class="fa fa-book"></i>
                                 </div>
-                                <div class="user_font">Projects</div>
-                                <div id="widget_countup12">3</div>
+                                <div class="user_font">Team Projects</div>
+                                <div id="widget_countup12">{{$countTP}}</div>
                                 
                             </div>
                         </div>
@@ -51,46 +52,42 @@
                             <div class="bg-white b_r_5 section_border">
                                 <div class="p-t-l-r-15">
                                     <div class="float-right m-t-5">
-                                        <i class="fa fa-users text-primary"></i>
+                                        <i class="fa fa-book text-primary"></i>
                                     </div>
-                                    <div id="widget_countup12">3</div>
-                                    <div>Projects</div>
+                                    <div id="widget_countup12">{{$countTP}}</div>
+                                    <div>Team Projects</div>
                                 </div>
-
-                                
-
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-12 col-sm-6 col-xl-3 media_max_573" >
-                    <div id="top_widget2">
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div id="top_widget1">
                         <div class="front">
-                            <div class="bg-success p-d-15 b_r_5">
+                            <div class="bg-primary p-d-15 b_r_5">
                                 <div class="float-right m-t-5">
-                                    <i class="fa fa-shopping-cart"></i>
+                                    <i class="fa fa-book"></i>
                                 </div>
-                                <div class="user_font">Teams</div>
-                                <div id="widget_countup12">1</div>
+                                <div class="user_font">Personal Projects</div>
+                                <div id="widget_countup12">{{$countp}}</div>
                                 
                             </div>
                         </div>
-
                         <div class="back">
                             <div class="bg-white b_r_5 section_border">
                                 <div class="p-t-l-r-15">
-                                    <div class="float-right m-t-5 text-success">
-                                        <i class="fa fa-shopping-cart"></i>
+                                    <div class="float-right m-t-5">
+                                        <i class="fa fa-book text-primary"></i>
                                     </div>
-                                    <div id="widget_countup22">1</div>
-                                    <div>Teams</div>
+                                    <div id="widget_countup12">{{$countp}}</div>
+                                    <div>Personal Projects</div>
                                 </div>
                             </div>
-                        </div>                      
-                    <br>
+                        </div>
                     </div>
                 </div>
+
+
                 <div class="col-12 col-sm-6 col-xl-3 media_max_1199" >
                     <div id="top_widget3">
                         <div class="front bg-container">
@@ -99,7 +96,7 @@
                                     <i class="fa fa-users"></i>
                                 </div>
                                 <div class="user_font">Teams</div>
-                                <div id="widget_countup12">1</div>
+                                <div id="widget_countup12">{{$countT}}</div>
                                 
                             </div>
                         </div>
@@ -108,37 +105,25 @@
                             <div class="bg-white b_r_5 section_border">
                                 <div class="p-t-l-r-15">
                                     <div class="float-right m-t-5 text-success">
-                                        <i class="fa fa-shopping-cart"></i>
+                                        <i class="fa fa-users"></i>
                                     </div>
-                                    <div id="widget_countup22">1</div>
+                                    <div id="widget_countup22">{{$countT}}</div>
                                     <div>Teams</div>
                                 </div>
                             </div>
-                        </div>                      
-                    <br>
+                        </div>  
                     </div>
                 </div>
-        </div>
-
-
-        
-</div>       
-
-<header class="head">
-        <div class="main-bar">
-            <div class="row no-gutters">
-                <div class="col-sm-6">
-                    <h4 class="nav_top_align">
-                        <i class="fa fa-calendar"></i>
-                        Apa Itu Kanban
-                    </h4>
-                </div>
             </div>
-        </div>
-    </header>
-    <div class="outer">
-        <div class="inner bg-container" >
-            <div class="card-body">           
+              </br>
+            </br>
+    </div>       
+
+
+          
+        </br>   
+            <div class="card-body">      
+             
                 <center><img src="{{asset('assets/img/kanban.jpg')}}" class="img-center " style="align:center; height:300px; width:600px;" alt="Photo of sunset"></center>
             </div>
 
@@ -162,7 +147,6 @@
                     </p>
                 </h4>
             </div>
-    
 @stop
 @section('footer_scripts')
     <!--  plugin scripts -->

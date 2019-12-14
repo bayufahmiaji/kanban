@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Task;
-use App\tb_list;
 use App\Http\Controllers\Controller;
+use App\TaskTeam;
+use App\Member;
+use App\Team;
+use App\ListTeam;
+use App\TaskHandle;
+use App\Projectteam;
 
-class TasksController extends Controller
+class TaskTeamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,11 +42,8 @@ class TasksController extends Controller
     public function store(Request $request)
     {
         
-
-        
-        Task::create($request->all());
+        TaskTeam::create($request->all());
         return back();
-    
     }
 
     /**
@@ -51,9 +52,14 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(TaskTeam $TaskTeam,$team,$list,$project)
     {
-        //
+        $project = Projectteam::where('id',$project)->first();
+        $tim = Team::where('id',$team)->first();
+        $lists = ListTeam::where('id_project',$list)->get();
+        $handle = TaskHandle::all();
+        $member = Member::where('id_team',$team)->get();
+        return view('kanban.task.team.edit',compact('TaskTeam','tim','lists','handle','project','member'));
     }
 
     /**
@@ -62,9 +68,18 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
-        //
+        $status = ListTeam::select('nama')->where('id','=',$request->id_list)->first();
+        $task = TaskTeam::find($id);
+        $task->id_list = $request->id_list;
+        $task->nama = $request->nama;
+        $task->deskripsi = $request->deskripsi;
+        $task->taskstart = $request->taskstart;
+        $task->taskend = $request->taskend;
+        $task->status = $status->nama;
+        $task->update();
+        return back();
     }
 
     /**

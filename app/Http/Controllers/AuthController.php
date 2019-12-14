@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 use App\User;
 use App\Http\Controllers\Controller;
 
@@ -41,5 +42,28 @@ class AuthController extends Controller
         $user->update($request->all());
         return redirect('/kanban');
     }
-
+    public function cari(Request $request)
+    {
+        
+     if($request->get('query'))
+     {
+      $query = $request->get('query');
+      $data = DB::table('user')
+        ->where('email', 'LIKE', "%{$query}%")
+        ->get();
+      $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+      foreach($data as $row)
+      {
+       $output .= '
+       <li><a href="#">'.$row->email.'</a></li>
+       ';
+      }
+      $output .= '</ul>';
+      echo $output;
+     }
+    }
+    
+    
+    
+    
 }

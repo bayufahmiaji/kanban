@@ -35,14 +35,14 @@
         <!-- .navbar -->
         <nav class="navbar navbar-static-top">
             <div class="container-fluid m-0">
+                @section('subtitle')
                 <a class="navbar-brand" href="/project">
                     <h4><img src="{{asset('assets/img/btplogo.png')}}" class="admin_img" alt="logo">
                     Board Project 
-                    @section('subtitle')
                     asu
-                    @show
                     </h4>
                 </a>
+                @show
                 <div class="topnav dropdown-menu-right">
                     <div class="btn-group small_device_search" data-toggle="modal"
                          data-target="#search_modal">

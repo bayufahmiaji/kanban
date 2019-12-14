@@ -44,6 +44,7 @@
                 </button>
         </div>
     </div>
+    
 
     <div class="outer">
         <div>
@@ -60,6 +61,7 @@
                                 <thead>
                                 <tr>
                                     <th>Nama Project</th>
+                                    <th>Progress</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -69,9 +71,11 @@
                                 @if($project->id_user === auth()->user()->id)
                                 <tr>
                                     <td>{{$project->name}}</td>
+                                    <td>0%</td>
                                     <td>
                                         <a href="/project/{{$project->id}}" class ="btn btn-success btn-sm">Details</a>
-                                        <a href="/project/{{$project->id}}/edit" class ="btn btn-warning btn-sm">Edit</a>
+                                        <a class ="btn btn-warning btn-sm" data-toggle="modal" 
+                                        data-target="#edit" data-project="{{$project->id}}" data-name="{{$project->name}}">Edit</a>
                                         <a href="/project/{{$project->id}}/delete" class ="btn btn-danger btn-sm" onclick="return confirm('Delete Project?')">Delete</a>
                                     </td>
                                 </tr>
@@ -116,6 +120,31 @@
                 </div>
             </div>
         </div>
+    <div class="modal fade" id="edit" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                    <div class="modal-body">
+                        <form  class="form-horizontal" id="otp_validation" method="post" action="/projecs/edit">
+                            {{ csrf_field()}}
+                            <input type="hidden" id="project" name ="project">
+                            <table >
+                                <tr>
+                                    <td style="padding: 10px"><label for="name">Masukan Nama Project</label></td>
+                                    <td><input style="width: 300px"  class="form-control" type="text" name="name" id="name"></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px"></td>
+                                    <td style="text-align: right"><input type="submit" value="Save" class="btn btn-labeled btn-success"></td>
+                                </tr>
+                            </table>
+                        </form>
+                        </div>
+                </div>
+            </div>
+        </div>
 @stop
 @section('footer_scripts')
     <!--plugin scripts-->
@@ -133,6 +162,18 @@
     <script type="text/javascript" src="{{asset('assets/vendors/datatables/js/buttons.print.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/vendors/datatables/js/dataTables.scroller.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/vendors/datatables/js/dataTables.responsive.js')}}"></script>
+    <script>
+    $('#edit').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var name = button.data('name') 
+        var project = button.data('project') 
+        
+        var modal = $(this)
+        modal.find('.modal-body #name').val(name);
+        modal.find('.modal-body #project').val(project);
+
+    })  
+    </script>
     <!-- end of plugin scripts -->
     <!--Page level scripts-->
     <script type="text/javascript" src="{{asset('assets/js/pages/datatable.js')}}"></script>

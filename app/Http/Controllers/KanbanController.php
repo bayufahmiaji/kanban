@@ -18,8 +18,9 @@ class KanbanController extends Controller
 
     public function team(){
         $team = Team::all();
-        $member = Member::all();
-        return view('kanban/team/team',compact('team','member'));
+        $members = Member::all();
+
+        return view('kanban/team/team',compact('team','members'));
     }
 
     public function home(){

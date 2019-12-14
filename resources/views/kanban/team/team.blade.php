@@ -102,20 +102,20 @@
                                         </td>
                                     </tr>
                                     @endif
-                                    @foreach($member as $member)
-                                    @if($team->id === $member->id_team)
+                                   @foreach($members as $member)
                                         @if($member->id_user === auth()->user()->id)
-                                        <tr>
-                                            <td>{{$team->name}}</td>
-                                            <td>
-                                                <a href="/team/{{$team->id}}" class ="btn btn-success btn-sm">Details</a>
-                                                <a href="/team/{{$team->id}}/edit" class ="btn btn-warning btn-sm">Edit</a>
-                                                <a href="/team/{{$team->id}}/delete" class ="btn btn-danger btn-sm" onclick="return confirm('Delete Project?')">Delete</a>
-                                            </td>
-                                        </tr>
+                                            @if($team->id === $member->id_team)
+                                                <tr>
+                                                    <td>{{$team->name}}</td>
+                                                    <td>
+                                                        <a href="/team/{{$team->id}}" class ="btn btn-success btn-sm">Details</a>
+                                                        <a href="/team/{{$team->id}}/edit" class ="btn btn-warning btn-sm">Edit</a>
+                                                        <a href="/team/{{$team->id}}/delete" class ="btn btn-danger btn-sm" onclick="return confirm('Delete Project?')">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endif
-                                    @endif
-                                    @endforeach 
+                                    @endforeach
                                 @endforeach
                                 </tbody>  </table>
                             </div>

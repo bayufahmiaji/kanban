@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Team;
+use App\TaskHandle;
 use App\Member;
-use App\User;
-use App\Projectteam;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class TeamController extends Controller
+class TaskHandlesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Team $team)
+    public function index()
     {
+        //
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +28,7 @@ class TeamController extends Controller
     {
         //
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -38,39 +37,37 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        Team::create($request->all());
-        return redirect('/team');
+        $member = Member::where('id','=',$request->id_member)->first();
 
+        $task = new TaskHandle;
+        $task->nama_user = $member->name;
+        $task->nama_project = $request->nama_project;
+        $task->id_task = $request->id_task;
+        $task->id_project = $request->id_project;
+        $task->id_user = $member->id_user;
+        $task->save();
+
+        return back();
     }
-    
+
     /**
      * Display the specified resource.
      *
-     * @param  \App\Team  $team
+     * @param  \App\TaskHandle  $taskHandle
      * @return \Illuminate\Http\Response
      */
-    public function show(Team $team)
+    public function show(TaskHandle $taskHandle)
     {
-        $user = User::all();
-        $member = Member::all();
-        $project = Projectteam::all();
-        return view('kanban.team.index',compact('user','member','team','project'));
         //
     }
-    public function show2(Team $team)
-    {
-        $user = User::all();
-        $member = Member::all();
-        return view('kanban.member.index',compact('user','member','team'));
-        //
-    }
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Team  $team
+     * @param  \App\TaskHandle  $taskHandle
      * @return \Illuminate\Http\Response
      */
-    public function edit(Team $team)
+    public function edit(TaskHandle $taskHandle)
     {
         //
     }
@@ -79,10 +76,10 @@ class TeamController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Team  $team
+     * @param  \App\TaskHandle  $taskHandle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Team $team)
+    public function update(Request $request, TaskHandle $taskHandle)
     {
         //
     }
@@ -90,10 +87,10 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Team  $team
+     * @param  \App\TaskHandle  $taskHandle
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Team $team)
+    public function destroy(TaskHandle $taskHandle)
     {
         //
     }

@@ -12,6 +12,9 @@ class Team extends Model
     public function member(){
         return $this->hasMany('App\Member');
     }
+    public function proojectteam(){
+        return $this->hasMany('App\Projectteam');
+    }
     public function user(){
         return $this->belongsTo('App\User');
     }
