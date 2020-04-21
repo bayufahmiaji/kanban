@@ -128,8 +128,17 @@ ul {
                                     <input type="hidden" value="{{$project->id}}" name ="id_project">
                                 </tr>
                                 <tr>
-                                    <td style="padding: 10px"><label for="nama">Masukan Nama List</label></td>
-                                    <td><input style="width: 300px"  class="form-control" type="text" name="nama" placeholder="Masukan Nama"></td>
+                                   <div class="form-group">
+                                    <label for="exampleFormControlSelect1">List</label>
+                                    <select class="form-control" name="nama" id="exampleFormControlSelect1">
+                                      <option>-</option>
+                                      <option>To Do</option>
+                                      <option>Doing</option>
+                                      <option>Done</option>
+                                      <option>Resource</option>
+                                      <option>On Hold</option>
+                                    </select>
+                                  </div>
                                 </tr>
                                 <tr>
                                     <td style="padding: 10px"></td>
@@ -157,7 +166,8 @@ ul {
                     @foreach ($result as $taskrow)
                     @if($taskrow->id_list === $list->id) 
                     <li class="text-row ui-sortable-handle"
-                        data-task-id="{{$taskrow->id_list}}">{{$taskrow->nama}}</li>
+                        data-task-id="{{$taskrow->id_list}}"> <a href="/task/{{$taskrow->id}}/{{$project->id}}/edit">{{$taskrow->nama}}</a> 
+                    </li>
                     @endif
                     @endforeach
                 
@@ -168,7 +178,7 @@ ul {
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     <div class="modal-body">
-                                        <form action="/posttask/{$list->id}" method="POST" class="form-horizontal" id="otp_validation">
+                                        <form action="/posttask" method="POST" class="form-horizontal" id="otp_validation">
                                             {{ csrf_field()}}
                                             <table >
                                                 <tr>

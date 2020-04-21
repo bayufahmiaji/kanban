@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
+use App\Project;
 use App\tb_list;
 use App\Http\Controllers\Controller;
 
@@ -51,9 +52,13 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,$project)
     {
-        //
+        $project = Project::where('id',$project)->first();
+        $list = tb_list::where('id_project',$project)->get();
+        $task = Task::where('id',$id)->first();
+        $project = $project;
+        return view('kanban.task.edit',compact('task','project','list'));
     }
 
     /**
@@ -74,9 +79,9 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        
     }
 
     /**

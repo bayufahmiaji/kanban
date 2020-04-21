@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     protected $table='task';
-    protected $fillable = ['nama','id_list','deskripsi'];
+    protected $guarded = [];
 
     public function list(){
         return $this->belongsTo('App\tb_list');

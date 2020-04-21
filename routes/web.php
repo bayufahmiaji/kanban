@@ -66,6 +66,7 @@ Route::group(['middleware' => 'auth'],function(){
     //task
     Route::post('/task/{id_list}/{id_task}' , 'ListsController@task');
     Route::get('/list/{list}' , 'ListsController@show');
+    route::get('/task/{id}/{project}/edit','TasksController@show');
         //team
         Route::post('/posttask/team','TaskTeamController@store');
         Route::get('/taskteam/{TaskTeam}/{team}/{list}/{project}/edit','TaskTeamController@show');
